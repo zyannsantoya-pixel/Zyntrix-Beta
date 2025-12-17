@@ -45,17 +45,17 @@ const products = [
 ];
 
 // Initialize Cart from LocalStorage
-let cart = JSON.parse(localStorage.getItem('zyntrixCart')) || [];
+// let cart = JSON.parse(localStorage.getItem('zyntrixCart')) || [];
 
 // DOM Elements
 const productGrid = document.getElementById('product-grid');
-const cartCount = document.getElementById('cart-count');
-const modal = document.getElementById('product-modal');
-const modalImg = document.getElementById('modal-img');
-const modalTitle = document.getElementById('modal-title');
-const modalDesc = document.getElementById('modal-desc');
-const modalPrice = document.getElementById('modal-price');
-const modalAddBtn = document.getElementById('modal-add-btn');
+//const cartCount = document.getElementById('cart-count');
+//const modal = document.getElementById('product-modal');
+//const modalImg = document.getElementById('modal-img');
+//const modalTitle = document.getElementById('modal-title');
+//const modalDesc = document.getElementById('modal-desc');
+//const modalPrice = document.getElementById('modal-price');
+//const modalAddBtn = document.getElementById('modal-add-btn');
 
 // Helper to format currency
 function formatCurrency(amount) {
@@ -79,149 +79,149 @@ function renderProducts() {
 }
 
 // Update Cart Count
-function updateCartCount() {
-    if (cartCount) {
-        cartCount.textContent = cart.length;
-    }
-}
+//function updateCartCount() {
+   // if (cartCount) {
+   //     cartCount.textContent = cart.length;
+   // }
+//}
 
 // Add to Cart
-function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    if (product) {
-        cart.push(product);
-        localStorage.setItem('zyntrixCart', JSON.stringify(cart));
-        updateCartCount();
-        alert(`${product.name} added to cart!`);
-        closeModal();
-    }
-}
+//function addToCart(productId) {
+   // const product = products.find(p => p.id === productId);
+   // if (product) {
+      //  cart.push(product);
+       // localStorage.setItem('zyntrixCart', JSON.stringify(cart));
+      //  updateCartCount();
+     //   alert(`${product.name} added to cart!`);
+     //   closeModal();
+  //  }
+//}
 
 // Inject Cart Modal HTML
 function injectCartModal() {
-    const cartModalHTML = `
-    <div id="cart-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="toggleCart()">&times;</span>
-            <h2>Your Cart</h2>
-            <div class="cart-items" id="cart-items">
-                <!-- Cart items injected here -->
-                <p style="text-align:center; padding: 20px;">Your cart is empty.</p>
-            </div>
-            <div class="cart-total">
-                Total: <span id="cart-total-price">₱0.00</span>
-            </div>
-            <div style="text-align: right; margin-top: 20px;">
-                <button class="btn-secondary" onclick="toggleCart()">Continue Shopping</button>
-                <button class="btn-primary" onclick="checkout()">Checkout</button>
-            </div>
-        </div>
-    </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', cartModalHTML);
-}
+  //  const cartModalHTML = `
+  //  <div id="cart-modal" class="modal">
+   //     <div class="modal-content">
+    //        <span class="close-btn" onclick="toggleCart()">&times;</span>
+    //        <h2>Your Cart</h2>
+    //       <div class="cart-items" id="cart-items">
+    //            <!-- Cart items injected here -->
+    //            <p style="text-align:center; padding: 20px;">Your cart is empty.</p>
+     //       </div>
+    //        <div class="cart-total">
+   //             Total: <span id="cart-total-price">₱0.00</span>
+    //        </div>
+    //        <div style="text-align: right; margin-top: 20px;">
+    //            <button class="btn-secondary" onclick="toggleCart()">Continue Shopping</button>
+    //            <button class="btn-primary" onclick="checkout()">Checkout</button>
+    //        </div>
+    //    </div>
+ //  </div>
+   //    `;
+   //    document.body.insertAdjacentHTML('beforeend', cartModalHTML);
+   }
 
 // Toggle Cart Modal
-window.toggleCart = function() {
-    const cartModal = document.getElementById('cart-modal');
-    if (!cartModal) return;
+  // window.toggleCart = function() {
+     //  const cartModal = document.getElementById('cart-modal');
+    //   if (!cartModal) return;
     
-    if (cartModal.style.display === 'flex') {
-        cartModal.style.display = 'none';
-    } else {
-        renderCart();
-        cartModal.style.display = 'flex';
-    }
-};
+    //   if (cartModal.style.display === 'flex') {
+    //       cartModal.style.display = 'none';
+     //  } else {
+      //     renderCart();
+      //     cartModal.style.display = 'flex';
+    //   }
+  // };
 
 // Render Cart Items
-function renderCart() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    const cartTotalPrice = document.getElementById('cart-total-price');
+  // function renderCart() {
+     //  const cartItemsContainer = document.getElementById('cart-items');
+    //   const cartTotalPrice = document.getElementById('cart-total-price');
     
-    if (!cartItemsContainer || !cartTotalPrice) return;
+    //   if (!cartItemsContainer || !cartTotalPrice) return;
 
-    if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p style="text-align:center; padding: 20px;">Your cart is empty.</p>';
-        cartTotalPrice.textContent = '₱0.00';
-        return;
-    }
+    //   if (cart.length === 0) {
+      //     cartItemsContainer.innerHTML = '<p style="text-align:center; padding: 20px;">Your cart is empty.</p>';
+      //     cartTotalPrice.textContent = '₱0.00';
+     //      return;
+    //   }
     
-    let total = 0;
-    cartItemsContainer.innerHTML = cart.map((item, index) => {
-        total += item.price;
-        return `
-        <div class="cart-item">
-            <div style="display:flex; align-items:center;">
-                <img src="${item.image}" alt="${item.name}">
-                <div class="cart-item-details">
-                    <div class="cart-item-title">${item.name}</div>
-                    <div class="cart-item-price">${formatCurrency(item.price)}</div>
-                </div>
-            </div>
-            <button class="remove-btn" onclick="removeFromCart(${index})">&times;</button>
-        </div>
-        `;
-    }).join('');
+    //   let total = 0;
+    //   cartItemsContainer.innerHTML = cart.map((item, index) => {
+       //    total += item.price;
+      //     return `
+       //    <div class="cart-item">
+       //        <div style="display:flex; align-items:center;">
+           //        <img src="${item.image}" alt="${item.name}">
+          //         <div class="cart-item-details">
+            //           <div class="cart-item-title">${item.name}</div>
+           //            <div class="cart-item-price">${formatCurrency(item.price)}</div>
+         //          </div>
+        //       </div>
+       //        <button class="remove-btn" onclick="removeFromCart(${index})">&times;</button>
+      //     </div>
+       //    `;
+     //  }).join('');
     
-    cartTotalPrice.textContent = formatCurrency(total);
-}
+     //  cartTotalPrice.textContent = formatCurrency(total);
+  // }
 
 // Remove from Cart
-window.removeFromCart = function(index) {
-    cart.splice(index, 1);
-    localStorage.setItem('zyntrixCart', JSON.stringify(cart));
-    updateCartCount();
-    renderCart();
-};
+  // window.removeFromCart = function(index) {
+    //   cart.splice(index, 1);
+    //   localStorage.setItem('zyntrixCart', JSON.stringify(cart));
+   //    updateCartCount();
+    //   renderCart();
+  // };
 
 // Checkout
-window.checkout = function() {
-    if (cart.length === 0) {
-        alert("Your cart is empty!");
-        return;
-    }
-    alert("Proceeding to checkout... (This is a demo)");
-    cart = [];
-    localStorage.setItem('zyntrixCart', JSON.stringify(cart));
-    updateCartCount();
-    toggleCart();
-};
+  // window.checkout = function() {
+    //   if (cart.length === 0) {
+       //    alert("Your cart is empty!");
+       //    return;
+   //    }
+   //    alert("Proceeding to checkout... (This is a demo)");
+    //   cart = [];
+    //  localStorage.setItem('zyntrixCart', JSON.stringify(cart));
+    //   updateCartCount();
+    //   toggleCart();
+  // };
 
-// Modal Functions
-window.openModal = function(productId) {
-    if (!modal) return;
+ // Modal Functions
+ //  window.openModal = function(productId) {
+     //  if (!modal) return;
     
-    const product = products.find(p => p.id === productId);
-    if (product) {
-        modalImg.src = product.image;
-        modalTitle.textContent = product.name;
-        modalDesc.textContent = product.description;
-        modalPrice.textContent = formatCurrency(product.price);
+     //  const product = products.find(p => p.id === productId);
+    //   if (product) {
+     //      modalImg.src = product.image;
+      //     modalTitle.textContent = product.name;
+     //      modalDesc.textContent = product.description;
+      //     modalPrice.textContent = formatCurrency(product.price);
         
-        // Update Add Button to pass specific ID
-        modalAddBtn.onclick = () => addToCart(product.id);
+// Update Add Button to pass specific ID
+       //    modalAddBtn.onclick = () => addToCart(product.id);
         
-        modal.style.display = 'flex';
-    }
-};
+        //   modal.style.display = 'flex';
+    //   }
+ //  };
 
-window.closeModal = function() {
-    if (modal) {
-        modal.style.display = 'none';
-    }
-};
+ // window.closeModal = function() {
+    //   if (modal) {
+    //       modal.style.display = 'none';
+   //    }
+  // };
 
 // Close modal when clicking outside
-window.onclick = function(event) {
-    const cartModal = document.getElementById('cart-modal');
-    if (modal && event.target == modal) {
-        closeModal();
-    }
-    if (cartModal && event.target == cartModal) {
-        toggleCart();
-    }
-};
+  // window.onclick = function(event) {
+     //  const cartModal = document.getElementById('cart-modal');
+    //   if (modal && event.target == modal) {
+     //      closeModal();
+    //   }
+   //    if (cartModal && event.target == cartModal) {
+    //       toggleCart();
+   //    }
+  // };
 
 // Contact Form Handler
 window.handleContactSubmit = function(event) {
@@ -248,41 +248,3 @@ window.handleLogin = function(event) {
     window.location.href = 'index.html';
 };
 
-window.handleRegister = function(event) {
-    event.preventDefault();
-    const name = document.getElementById('reg-name').value;
-    const email = document.getElementById('reg-email').value;
-    // Simulate register
-    localStorage.setItem('zyntrixUser', JSON.stringify({ name: name, email: email }));
-    alert('Registration successful! Redirecting to Login Page...');
-    window.location.href = 'login.html';
-};
-
-window.logout = function() {
-    localStorage.removeItem('zyntrixUser');
-    alert('Logged out.');
-    window.location.href = 'index.html';
-};
-
-function updateAuthUI() {
-    const user = JSON.parse(localStorage.getItem('zyntrixUser'));
-    const authLink = document.getElementById('auth-link');
-    
-    if (authLink) {
-        if (user) {
-            authLink.innerHTML = `<a href="#" onclick="logout()">Logout</a>`;
-        } else {
-            // Check if we are on login page to set active class? 
-            // For simplicity, just set link.
-            authLink.innerHTML = `<a href="login.html">Login</a>`;
-        }
-    }
-}
-
-// Update init
-document.addEventListener('DOMContentLoaded', () => {
-    injectCartModal();
-    renderProducts();
-    updateCartCount();
-    updateAuthUI();
-});
